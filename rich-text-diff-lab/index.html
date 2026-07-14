@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rich Text Diff Lab</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Rich Text Diff Lab</h1>
+          <p>Paste or type two rich-text versions, compare them, then inspect the read-only highlighted result.</p>
+        </div>
+        <div class="actions">
+          <button id="sampleBtn" type="button">Load Sample</button>
+          <button id="clearBtn" type="button">Clear</button>
+          <button id="compareBtn" type="button" class="primary">Compare</button>
+        </div>
+      </header>
+
+      <section class="editor-table" aria-label="Before and after editors">
+        <article class="editor-column">
+          <header>Before</header>
+          <div id="beforeEditor" class="editor" contenteditable="true" spellcheck="false"></div>
+        </article>
+        <article class="editor-column">
+          <header>After</header>
+          <div id="afterEditor" class="editor" contenteditable="true" spellcheck="false"></div>
+        </article>
+      </section>
+
+      <section class="summary-strip" id="summaryStrip" aria-label="Diff summary"></section>
+
+      <section class="legend" aria-label="Legend">
+        <span><i class="swatch deleted"></i>Deleted</span>
+        <span><i class="swatch inserted"></i>Inserted</span>
+        <span><i class="swatch edited"></i>Edited text</span>
+        <span><i class="swatch format"></i>Format changed</span>
+        <span><i class="swatch structure"></i>Structure changed</span>
+        <span><i class="swatch ambiguous"></i>Ambiguous</span>
+      </section>
+
+      <section class="diff-layout" aria-label="Diff output">
+        <article class="diff-panel before">
+          <header>Before read-only diff</header>
+          <div id="beforeDiff" class="diff-body"></div>
+        </article>
+        <article class="diff-panel after">
+          <header>After read-only diff</header>
+          <div id="afterDiff" class="diff-body"></div>
+        </article>
+      </section>
+
+      <section class="debug-grid">
+        <article class="debug-panel">
+          <header>Block Match Map</header>
+          <div id="matchMap"></div>
+        </article>
+        <article class="debug-panel">
+          <header>Engine Notes</header>
+          <ol>
+            <li>Normalize HTML into semantic document blocks.</li>
+            <li>Find exact anchors before fuzzy matching.</li>
+            <li>Use weighted rare terms for candidate matches.</li>
+            <li>Use sentence grouping before word-level diff.</li>
+            <li>Compare marks after text alignment.</li>
+          </ol>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

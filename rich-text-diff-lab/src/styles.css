@@ -1,0 +1,365 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --ink: #202630;
+  --muted: #657083;
+  --line: #d9dee8;
+  --green: #12844f;
+  --green-soft: #dff6ea;
+  --red: #b4232c;
+  --red-soft: #fde2e1;
+  --blue: #1e63b6;
+  --blue-soft: #e1edff;
+  --violet: #7651c9;
+  --violet-soft: #eee7ff;
+  --amber: #8a5a00;
+  --amber-soft: #fff2c7;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.app-shell {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.topbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+p {
+  margin: 0;
+}
+
+.topbar p,
+.legend,
+.summary-pill,
+.map-row {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button,
+select {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 0 12px;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.primary {
+  border-color: #174ea6;
+  background: #174ea6;
+  color: white;
+}
+
+.editor-table {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.editor-column:first-child {
+  border-right: 1px solid var(--line);
+}
+
+.editor-column > header,
+.diff-panel > header,
+.debug-panel > header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #f8fafc;
+  font-weight: 650;
+}
+
+.editor {
+  min-height: 280px;
+  padding: 16px;
+  outline: none;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+  background: #fff;
+}
+
+.editor:focus {
+  box-shadow: inset 0 0 0 2px #7aa7e8;
+}
+
+.editor table {
+  max-width: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 10px 0;
+}
+
+.editor td,
+.editor th {
+  border: 1px solid var(--line);
+  padding: 6px 8px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.summary-strip,
+.legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.summary-pill,
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: var(--panel);
+}
+
+.summary-pill strong {
+  color: var(--ink);
+}
+
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+
+.swatch.deleted,
+.deleted {
+  background: var(--red-soft);
+}
+
+.swatch.inserted,
+.inserted {
+  background: var(--green-soft);
+}
+
+.swatch.edited,
+.edited {
+  background: var(--blue-soft);
+}
+
+.swatch.format,
+.format {
+  background: var(--violet-soft);
+}
+
+.swatch.structure,
+.structure {
+  background: var(--amber-soft);
+}
+
+.swatch.ambiguous {
+  background: repeating-linear-gradient(45deg, #fff, #fff 4px, var(--amber-soft) 4px, var(--amber-soft) 8px);
+}
+
+.diff-layout,
+.debug-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.diff-panel,
+.debug-panel {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.diff-panel.before > header {
+  color: var(--red);
+}
+
+.diff-panel.after > header {
+  color: var(--green);
+}
+
+.diff-body {
+  min-height: 260px;
+  padding: 12px;
+  background: #fff;
+}
+
+.diff-block {
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  border-left: 4px solid transparent;
+  border-radius: 7px;
+  overflow-wrap: anywhere;
+}
+
+h1.diff-block,
+h2.diff-block,
+h3.diff-block {
+  font-size: 18px;
+}
+
+.diff-block.deleted {
+  border-left-color: var(--red);
+}
+
+.diff-block.inserted {
+  border-left-color: var(--green);
+}
+
+.diff-block.structure {
+  box-shadow: inset 0 0 0 1px #e6b84e;
+}
+
+.diff-block.format {
+  box-shadow: inset 0 -3px 0 var(--violet-soft);
+}
+
+.diff-block.placeholder {
+  opacity: .45;
+}
+
+.mark {
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+.mark.deleted {
+  color: var(--red);
+  text-decoration: line-through;
+}
+
+.mark.inserted {
+  color: var(--green);
+}
+
+.mark.format {
+  box-shadow: inset 0 -3px 0 #c8b8f4;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 10px;
+}
+
+.diff-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: var(--panel);
+}
+
+.diff-table th,
+.diff-table td {
+  border: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.diff-table th {
+  background: #f8fafc;
+}
+
+.debug-panel {
+  padding-bottom: 8px;
+}
+
+.empty-state {
+  min-height: 72px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: #fbfcfe;
+  padding: 12px;
+  text-align: center;
+}
+
+.debug-panel ol {
+  margin: 12px 20px;
+  padding-left: 18px;
+}
+
+.debug-panel li {
+  margin-bottom: 8px;
+}
+
+.map-row {
+  display: grid;
+  grid-template-columns: 150px 150px minmax(0, 1fr);
+  gap: 10px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.map-row strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+@media (max-width: 820px) {
+  .editor-table,
+  .diff-layout,
+  .debug-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-column:first-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .map-row {
+    grid-template-columns: 1fr;
+  }
+}
